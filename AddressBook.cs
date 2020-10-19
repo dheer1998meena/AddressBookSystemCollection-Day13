@@ -17,9 +17,9 @@ namespace AddressBookSystemCollection
         //create a dictionary(generic collection) to store keyvalue pair
         private Dictionary<string, Contact> d = new Dictionary<string, Contact>();
         //create a city dictionary to store city details
-        private Dictionary<string, Contact> cityDictionary = new Dictionary<string, Contact>();
+        public static Dictionary<string, Contact> cityDictionary = new Dictionary<string, Contact>();
         //create a state dictionary to store state details
-        private Dictionary<string, Contact> stateDictionary = new Dictionary<string, Contact>();
+        public static Dictionary<string, Contact> stateDictionary = new Dictionary<string, Contact>();
         public List<Contact> GetList()
         {
             return list;
@@ -191,6 +191,32 @@ namespace AddressBookSystemCollection
                 Console.WriteLine();
             }
 
+        }
+        //UC10-Count by city name
+        public void GetCountByCity()
+        {
+            Console.WriteLine("Enter a city name to get number of contacts within the location:");
+            string cityName = Console.ReadLine().ToUpper();
+            Console.WriteLine("\nNumber of contact persons present at {0}:", cityName);
+            /// CHECKS IF THE DICTIONARY ALREADY CONTAINS THE CITY/STATE
+            if (cityDictionary.ContainsKey(cityName))
+                ///DISPLAYS THE COUNT
+                Console.WriteLine(cityDictionary[cityName].Count);
+            else
+                Console.WriteLine(0);
+        }
+        //UC10-Count by state name
+        public void GetCountByState()
+        {
+            Console.WriteLine("Enter state name to get number of contacts within the location:");
+            string StateName = Console.ReadLine().ToUpper();
+            Console.WriteLine("\nNumber of contact persons present at {0}:", StateName);
+            /// CHECKS IF THE DICTIONARY ALREADY CONTAINS THE CITY/STATE
+            if (stateDictionary.ContainsKey(StateName))
+                ///DISPLAYS THE COUNT
+                Console.WriteLine(stateDictionary[StateName].Count);
+            else
+                Console.WriteLine(0);
         }
     }
 }
