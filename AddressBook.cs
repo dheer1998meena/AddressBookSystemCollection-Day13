@@ -16,6 +16,10 @@ namespace AddressBookSystemCollection
         private List<Contact> list = new List<Contact>();
         //create a dictionary(generic collection) to store keyvalue pair
         private Dictionary<string, Contact> d = new Dictionary<string, Contact>();
+        //create a city dictionary to store city details
+        private Dictionary<string, Contact> cityDictionary = new Dictionary<string, Contact>();
+        //create a state dictionary to store state details
+        private Dictionary<string, Contact> stateDictionary = new Dictionary<string, Contact>();
         public List<Contact> GetList()
         {
             return list;
@@ -97,6 +101,41 @@ namespace AddressBookSystemCollection
                 }
             }
             return false;
+        }
+        //UC8-Ability to search Person in a City or State across the multiple address book
+        public List<Contact> SearchPeopleByCityOrState(string location)
+        {
+            //using foreach loop to add city name entered by the user into the city dictionary
+            foreach (Contact c in list)
+            {
+                cityDictionary.Add(c.GetCity(), c);
+            }
+            //using foreach loop to add state name entered by the user into the state dictionary
+            foreach (Contact c in list)
+            {
+                stateDictionary.Add(c.GetState(), c);
+            }
+            //creating a new list as list of people to store the people of similar city together
+            List<Contact> listofpeople = new List<Contact>();
+            //iterating the key value pair in the city dictionary using foreach loop
+            foreach (KeyValuePair<string, Contact> kvp in cityDictionary)
+            {
+                // adding the key value pair into the list
+                if (kvp.Key.Equals(location))
+                {
+                    listofpeople.Add(kvp.Value);
+                }
+            }
+            //iterating the key value pair in the state dictionary using foreach loop
+            foreach (KeyValuePair<string, Contact> kvp in stateDictionary)
+            {
+                // adding the key value pair into the list
+                if (kvp.Key.Equals(location))
+                {
+                    listofpeople.Add(kvp.Value);
+                }
+            }
+            return listofpeople;
         }
     }
 }
