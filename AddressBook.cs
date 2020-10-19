@@ -137,5 +137,60 @@ namespace AddressBookSystemCollection
             }
             return listofpeople;
         }
+        //method to view address by city name
+        public void AddressByCity()
+        {
+            //creating hashset with name cityset
+            HashSet<string> citySet = new HashSet<string>();
+            //using for each loop to iterate the list and add city into hashset
+            foreach (Contact c in list)
+            {
+
+                citySet.Add(c.GetCity());
+            }
+            //iterating the hashset to display contact details with city name
+            foreach (string s in citySet)
+            {
+                Console.WriteLine("Contacts with address " + s + " are : ");
+                Console.WriteLine();
+                foreach (Contact cc in list)
+                {
+
+                    if (cc.GetCity().Equals(s))
+                        Console.WriteLine("Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  ZIP : " + cc.GetZip() + "  Contact No : " + cc.GetPhoneNo() + "  EmailID : " + cc.GetEmail());
+
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+        }
+        //method to view address by state name
+        public void AddressByState()
+        {
+            //creating hashset with name stateset
+            HashSet<string> stateSet = new HashSet<string>();
+            //using for each loop to iterate the list and add state into hashset
+            foreach (Contact c in list)
+            {
+
+                stateSet.Add(c.GetState());
+            }
+            //iterating the hashset to display contact details with state name
+            foreach (string s in stateSet)
+            {
+                Console.WriteLine("Contacts with address " + s + " are : ");
+                Console.WriteLine();
+                foreach (Contact cc in list)
+                {
+
+                    if (cc.GetState().Equals(s))
+                        Console.WriteLine("Name : " + cc.GetName() + "  Address : " + cc.GetAddress() + "  ZIP : " + cc.GetZip() + "  Contact No : " + cc.GetPhoneNo() + "  EmailID : " + cc.GetEmail());
+
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
+        }
     }
 }

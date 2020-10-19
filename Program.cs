@@ -29,7 +29,9 @@ namespace AddressBookSystemCollection
                 Console.WriteLine("4.Remove a contact.");
                 Console.WriteLine("5.View AddressBook fora key name.");
                 Console.WriteLine("6.Search person by city/state name.");
-                Console.WriteLine("7.Exit.");
+                Console.WriteLine("7.View persons by city.");
+                Console.WriteLine("8.View persons by state");
+                Console.WriteLine("9.Exit.");
                 choice = Convert.ToInt32(Console.ReadLine());
                 //Checking the choice entered by the user and iterating using for loop
                 if (choice == 1)
@@ -186,6 +188,7 @@ namespace AddressBookSystemCollection
                 {
                     Console.WriteLine("Enter the key name : ");
                     string kname = Console.ReadLine();
+                    //adding the keyname 
                     Contact cc = ab.ViewByKeyName(kname);
                     if (cc == null)
                     {
@@ -202,11 +205,14 @@ namespace AddressBookSystemCollection
                         Console.WriteLine("Email ID : " + cc.GetEmail());
                     }
                 }
+                //iterating sixth choice to search people by city or state
                 else if (choice == 6)
                 {
                     Console.WriteLine("Enter the name of the city/state : ");
                     string location = Console.ReadLine();
+                    //calling the method UC8_SearchPeopleByCityOrState() and adding the location into the list li
                     List<Contact> li = ab.SearchPeopleByCityOrState(location);
+                    //iterating the list to fetch the contact details when the list count is not empty
                     if (li.Count != 0)
                     {
                         Console.WriteLine("There are " + li.Count + " contacts with location " + location);
@@ -220,12 +226,22 @@ namespace AddressBookSystemCollection
                         Console.WriteLine("No contact found!!!");
                     }
                 }
+                //UC9- View persons by city or state
+                else if (choice == 7)
+                {
+                    ab.AddressByCity();
+
+                }
+                else if (choice == 8)
+                {
+                    ab.AddressByState();
+                }
                 else
                 {
                     break;
                 }
                 //exit
-            } while (choice != 7);
+            } while (choice != 9);
         }
     }
 }
